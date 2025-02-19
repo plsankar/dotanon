@@ -76,40 +76,44 @@ function UserQueryForm() {
     }, [handleWatch, watch]);
 
     return (
-        <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                <div className="flex items-end">
-                    <div className="flex-grow pe-4">
-                        <FormField
-                            control={form.control}
-                            name="query"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Domain</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            placeholder="example.com"
-                                            {...field}
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+        <div className="sticky top-0 bg-background z-10 py-5">
+            <Form {...form}>
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-4"
+                >
+                    <div className="flex items-end">
+                        <div className="flex-grow pe-4">
+                            <FormField
+                                control={form.control}
+                                name="query"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>
+                                            Begin your search...
+                                        </FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <Button
+                            type="button"
+                            variant="destructive"
+                            size="icon"
+                            onClick={() => {
+                                form.setValue("query", "");
+                            }}
+                        >
+                            <XIcon className="w-4 h-4" />
+                        </Button>
                     </div>
-                    <Button
-                        type="button"
-                        variant="destructive"
-                        size="icon"
-                        onClick={() => {
-                            form.setValue("query", "");
-                        }}
-                    >
-                        <XIcon className="w-4 h-4" />
-                    </Button>
-                </div>
-            </form>
-        </Form>
+                </form>
+            </Form>
+        </div>
     );
 }
 

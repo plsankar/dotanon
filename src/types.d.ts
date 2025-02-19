@@ -1,4 +1,4 @@
-interface RDAPData {
+interface RDAPDomainData {
     handle: string;
     ldhName: string;
     links: { href: string; rel: string }[];

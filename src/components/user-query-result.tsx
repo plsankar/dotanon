@@ -11,11 +11,6 @@ const UserQueryResult = () => {
         <div>
             {query.length > 0 ? (
                 <>
-                    <div className="mt-5">
-                        <p className="text-lg font-serif">
-                            Results for: {query}
-                        </p>
-                    </div>
                     <AvailabilityResult />
                 </>
             ) : null}

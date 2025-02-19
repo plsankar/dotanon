@@ -1,6 +1,9 @@
+import React, { useMemo } from "react";
+
 import { Badge } from "./ui/badge";
-import React from "react";
+import { InfoEvents } from "./info-events";
 import { Skeleton } from "@/components/ui/skeleton";
+import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
 const ResutlListItem = ({
@@ -16,51 +19,59 @@ const ResutlListItem = ({
         queryKey: [domain],
         retry: 1,
         queryFn: () =>
-            fetch(`${row.rdapUrl}domain/${domain}`).then(async (res) => {
-                const body = await res.json();
+            axios<RDAPDomainData>(`${row.rdapUrl}domain/${domain}`, {
+                validateStatus: null,
+            }).then(async (res) => {
+                console.log(res.data);
                 return {
                     status: res.status,
-                    data: body,
+                    data: res.data,
                 };
             }),
     });
 
+    const available = useMemo(() => data?.status === 404, [data]);
+
     return (
-        <div className="flex gap-2 pb-5 items-center">
-            <div className="w-3/5">
-                <a href={`http://${domain}`} target="_blank">
-                    <p className="font-serif border-b border-transparent hover:border-black/20 cursor-pointer inline-block">
-                        <span className="text-2xl font-serif opacity-50">
-                            {query}
-                        </span>
-                        .<span className="font-medium text-sm">{row.name}</span>
-                    </p>
-                </a>
+        <div>
+            <div className="flex gap-2 py-8 items-center">
+                <div className="w-3/5">
+                    <a href={`http://${domain}`} target="_blank">
+                        <p className="font-serif border-b border-transparent hover:border-black/20 cursor-pointer inline-block">
+                            <span className="text-2xl font-serif opacity-50">
+                                {query}
+                            </span>
+                            .
+                            <span className="font-medium text-sm">
+                                {row.name}
+                            </span>
+                        </p>
+                    </a>
+                </div>
+                <div className="w-1/5"></div>
+                <div className="w-1/5 text-end">
+                    {isPending ? (
+                        <Skeleton className="w-[100px] h-[20px] rounded-full" />
+                    ) : (
+                        <>
+                            {error ? (
+                                <Badge variant="destructive">ERROR</Badge>
+                            ) : (
+                                <Badge
+                                    variant={`${
+                                        available ? "secondary" : "destructive"
+                                    }`}
+                                >
+                                    {available ? "Available" : "Registered"}
+                                </Badge>
+                            )}
+                        </>
+                    )}
+                </div>
             </div>
-            <div className="w-1/5"></div>
-            <div className="w-1/5 text-end">
-                {isPending ? (
-                    <Skeleton className="w-[100px] h-[20px] rounded-full" />
-                ) : (
-                    <>
-                        {error ? (
-                            <Badge variant="destructive">ERROR</Badge>
-                        ) : (
-                            <Badge
-                                variant={`${
-                                    data.status === 404
-                                        ? "secondary"
-                                        : "destructive"
-                                }`}
-                            >
-                                {data.status === 404
-                                    ? "Available"
-                                    : "Registered"}
-                            </Badge>
-                        )}
-                    </>
-                )}
-            </div>
+            {data && !available && (
+                <InfoEvents rdap={data.data} domain={domain} />
+            )}
         </div>
     );
 };
