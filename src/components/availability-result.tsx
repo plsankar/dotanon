@@ -3,12 +3,11 @@ import React, { useEffect, useMemo, useState } from "react";
 import ResultListItem from "./result-list-item";
 import { parse } from "tldts";
 import { toUnicode } from "punycode";
-import useRDAP from "@/hooks/use-rdap";
 import useUserQuery from "@/hooks/use-user-query";
+import { dnsList } from "rdap-kit";
 
 const AvailabilityResult = () => {
     const { query } = useUserQuery();
-    const { rdapTlds, isPending } = useRDAP();
     const [list, setList] = useState<AvailabilityResultRow[]>([]);
     const [lastQuery, setLastQuery] = useState<ParsedQuery>({
         query: "",
@@ -35,17 +34,17 @@ const AvailabilityResult = () => {
             "studio",
             "space",
         ];
-        if (lastQuery != parsedQuery && !isPending) {
+        if (lastQuery != parsedQuery) {
             setLastQuery(parsedQuery);
 
             let favTlds = [];
 
-            favTlds = rdapTlds.filter(
+            favTlds = dnsList.filter(
                 (tld) => favs.find((fav) => fav.endsWith(tld.tld)) != null
             );
 
             if (parsedQuery.tld) {
-                const validParsedTld = rdapTlds.find((tld) =>
+                const validParsedTld = dnsList.find((tld) =>
                     parsedQuery.tld!.endsWith(tld.tld)
                 );
                 console.log(`validParsedTld:`, validParsedTld);
@@ -65,16 +64,15 @@ const AvailabilityResult = () => {
                     const decoded = toUnicode(tld.tld);
                     return {
                         name: decoded,
-                        rdapUrl: tld.rdapUrl,
+                        rdapUrl: tld.server,
                     };
                 })
             );
         }
-    }, [lastQuery, parsedQuery, rdapTlds, setLastQuery, isPending]);
+    }, [lastQuery, parsedQuery, setLastQuery]);
 
     return (
         <div className="container mx-auto pb-10">
-            {isPending && <>Loading</>}
             <div className="divide-y space-y-8">
                 {list.map((row) => (
                     <ResultListItem
