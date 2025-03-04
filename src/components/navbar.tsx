@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { ModeToggle } from "./mode-toggle";
 
 const Navbar = () => {
     return (
@@ -7,6 +8,9 @@ const Navbar = () => {
             <Link href="/" className="text-2xl font-serif">
                 dotAnon
             </Link>
+            <div>
+                <ModeToggle />
+            </div>
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 import { Inter, Sora } from "next/font/google";
 
@@ -28,7 +29,14 @@ export default function RootLayout({
             <body
                 className={`${fontSans.variable} ${fontSerif.variable} font-sans antialiased`}
             >
-                {children}
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    {children}
+                </ThemeProvider>
             </body>
         </html>
     );

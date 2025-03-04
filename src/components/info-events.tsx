@@ -43,7 +43,7 @@ export const InfoEvents = ({
     return (
         <Card className="shadow-sm mt-5">
             <CardContent className="p-3">
-                <div className="grid grid-cols-3 border-top bg-gray-50/50 rounded-lg border-black/10 border p-4 divide-x [&>*:not(:first-child)]:pl-4">
+                <div className="grid grid-cols-3 border-top bg-gray-50 dark:bg-black/20 rounded-lg border-black/10 dark:border-white/10 border p-4 divide-x [&>*:not(:first-child)]:pl-4">
                     {[registration, expiration, lastChanged]
                         .filter((e) => e != null)
                         .map((event) => (
@@ -53,7 +53,7 @@ export const InfoEvents = ({
                             />
                         ))}
                 </div>
-                <div className="bg-gray-50/50 rounded-lg border-black/10 border mt-4">
+                <div className="bg-gray-50 dark:bg-black/20 rounded-lg border-black/10 dark:border-white/10 border mt-4">
                     <Accordion type="single" collapsible className="">
                         <AccordionItem value={domain} className="border-b-0">
                             <AccordionTrigger className="hover:no-underline px-4 [&[data-state=open]>svg]:rotate-180">
