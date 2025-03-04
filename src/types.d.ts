@@ -5,12 +5,19 @@ interface RDAPDomainData {
     events: { eventAction: string; eventDate: string }[];
     entities: {
         handle: string;
+        publicIds: Array<{
+            type: string;
+            identifier: string;
+        }>;
         roles: string[];
-        vcardArray: [string, ...[string, object, string, string][]][];
+        vcardArray: VcardArray;
+        entities: { roles: string[]; vcardArray: VcardArray }[];
     }[];
     status: string[];
     notices: { title: string; description: string[] }[];
 }
+
+type VcardArray = [string, ...[string, object, string, string][]][];
 
 interface RDAPDNSList {
     services: Array<RDAPDNSListItem>;
