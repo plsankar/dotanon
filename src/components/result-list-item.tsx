@@ -6,7 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
-const ResutlListItem = ({
+const ResultListItem = ({
     row,
     query,
 }: {
@@ -76,4 +76,4 @@ const ResutlListItem = ({
     );
 };
 
-export default ResutlListItem;
+export default ResultListItem;

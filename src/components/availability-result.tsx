@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 
-import ResutlListItem from "./resutl-list-item";
+import ResultListItem from "./result-list-item";
 import { parse } from "tldts";
 import { toUnicode } from "punycode";
 import useRDAP from "@/hooks/use-rdap";
@@ -77,7 +77,7 @@ const AvailabilityResult = () => {
             {isPending && <>Loading</>}
             <div className="divide-y">
                 {list.map((row) => (
-                    <ResutlListItem
+                    <ResultListItem
                         query={parsedQuery.query}
                         row={row}
                         key={row.name}
