@@ -34,7 +34,7 @@ const ResultListItem = ({
 
     return (
         <div>
-            <div className="flex gap-2 py-8 items-center">
+            <div className="flex gap-2 pt-5 px-4 items-center">
                 <div className="w-3/5">
                     <a href={`http://${domain}`} target="_blank">
                         <p className="font-serif border-b border-transparent hover:border-black/20 cursor-pointer inline-block">

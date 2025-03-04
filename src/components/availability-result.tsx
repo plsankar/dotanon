@@ -75,7 +75,7 @@ const AvailabilityResult = () => {
     return (
         <div className="container mx-auto pb-10">
             {isPending && <>Loading</>}
-            <div className="divide-y">
+            <div className="divide-y space-y-8">
                 {list.map((row) => (
                     <ResultListItem
                         query={parsedQuery.query}

@@ -6,7 +6,7 @@ interface RDAPDomainData {
     entities: {
         handle: string;
         roles: string[];
-        vcardArray: [string, ...unknown[]][];
+        vcardArray: [string, ...[string, {}, string, string][]][];
     }[];
     status: string[];
     notices: { title: string; description: string[] }[];
