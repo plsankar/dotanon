@@ -45,7 +45,7 @@ export const InfoEvents = ({
     )?.identifier;
 
     const abuseEntity = registrar?.entities
-        .find((entry) => entry.roles.includes("abuse"))
+        ?.find((entry) => entry.roles.includes("abuse"))
         ?.vcardArray.filter((e) => typeof e !== "string")
         .flat();
 
