@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 
 import { Inter, Sora } from "next/font/google";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
+import Providers from "@/providers";
 
 const fontSans = Inter({
     subsets: ["latin"],
@@ -29,14 +31,13 @@ export default function RootLayout({
             <body
                 className={`${fontSans.variable} ${fontSerif.variable} font-sans antialiased`}
             >
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange
-                >
-                    {children}
-                </ThemeProvider>
+                <Providers>
+                    <>
+                        <Navbar />
+                        {children}
+                        <Footer />
+                    </>
+                </Providers>
             </body>
         </html>
     );
