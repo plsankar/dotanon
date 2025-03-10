@@ -30,7 +30,7 @@ const ResultListItem = ({
             }),
     });
 
-    const available = useMemo(() => data?.status === 404, [data]);
+    const available = useMemo(() => data?.status !== 200, [data]);
 
     return (
         <div>

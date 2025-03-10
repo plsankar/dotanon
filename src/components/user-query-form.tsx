@@ -61,7 +61,7 @@ function UserQueryForm() {
 
     const handleWatch = useDebouncedCallback((values) => {
         if (values.query && values.query.length > 2) {
-            const result = parse(values.query);
+            const result = parse(values.query.replace(" ", ""));
             if (result.domain && values.query != result.domain) {
                 setValue("query", result.domain);
                 return;
