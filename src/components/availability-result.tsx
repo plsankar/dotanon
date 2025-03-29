@@ -47,15 +47,18 @@ const AvailabilityResult = () => {
                 const validParsedTld = dnsList.find((tld) =>
                     parsedQuery.tld!.endsWith(tld.tld)
                 );
-                console.log(`validParsedTld:`, validParsedTld);
                 if (validParsedTld) {
+                    // TODO: Merge two loops
                     const index = favTlds.findIndex((tld) =>
                         parsedQuery.tld!.endsWith(tld.tld)
                     );
                     if (index != -1) {
-                        favTlds = favTlds.filter((tld, i) => i != index);
+                        favTlds = favTlds.filter((_, i) => i != index);
                     }
-                    favTlds = [validParsedTld, ...favTlds];
+                    favTlds = [
+                        { server: validParsedTld.server, tld: parsedQuery.tld },
+                        ...favTlds,
+                    ];
                 }
             }
 
