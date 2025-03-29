@@ -5,6 +5,7 @@ import { InfoEvents } from "./info-events";
 import { Skeleton } from "@/components/ui/skeleton";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { WaybackButton } from "./wayback-button";
 
 const ResultListItem = ({
     row,
@@ -48,7 +49,9 @@ const ResultListItem = ({
                         </p>
                     </a>
                 </div>
-                <div className="w-1/5"></div>
+                <div className="w-1/5 text-end">
+                    <WaybackButton domain={domain} />
+                </div>
                 <div className="w-1/5 text-end">
                     {isPending ? (
                         <Skeleton className="w-[100px] h-[20px] rounded-full" />
