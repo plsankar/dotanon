@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
     Popover,
@@ -11,7 +11,6 @@ import {
     Calendar,
     Clock,
     ExternalLink,
-    History,
     LibraryIcon,
     Loader2,
 } from "lucide-react";
