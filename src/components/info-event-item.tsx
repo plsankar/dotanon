@@ -4,18 +4,23 @@ import { Badge } from "./ui/badge";
 import { useMemo } from "react";
 
 const InfoEventItem = ({ event }: { event: RDAPDomainData["events"][0] }) => {
-    const date = new Date(event.eventDate);
-    const dateString = format(date, "dd-MM-yyyy");
-    const timeString = format(date, "hh:mm:ss a");
+    const { dateString, timeString, difference } = useMemo(() => {
+        const date = new Date(event.eventDate);
+        const dateString = format(date, "dd-MM-yyyy");
+        const timeString = format(date, "hh:mm:ss a");
 
-    const difference = useMemo(() => {
-        const diffInDays = differenceInCalendarDays(date, new Date());
-        return diffInDays === 0
-            ? "Today"
-            : `${Math.abs(diffInDays)} days ${
-                  diffInDays > 0 ? "from now" : "ago"
-              }`;
-    }, [date]);
+        const diff = differenceInCalendarDays(date, new Date());
+        const difference =
+            diff === 0
+                ? "Today"
+                : `${Math.abs(diff)} days ${diff > 0 ? "from now" : "ago"}`;
+
+        return {
+            dateString,
+            timeString,
+            difference,
+        };
+    }, [event.eventDate]);
 
     return (
         <div className="">
