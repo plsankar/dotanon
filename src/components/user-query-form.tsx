@@ -59,6 +59,7 @@ function UserQueryForm() {
     const { handleSubmit, watch, setValue } = form;
     const submit = handleSubmit(onSubmit);
 
+    // Watch the query and update results without submitting the form
     const handleWatch = useDebouncedCallback((values) => {
         if (values.query && values.query.length > 2) {
             const result = parse(values.query.replace(" ", ""));
