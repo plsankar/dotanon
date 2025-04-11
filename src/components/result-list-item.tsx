@@ -6,6 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { WaybackButton } from "./wayback-button";
+import RegisterDomainButton from "./register-domain-button";
 
 const ResultListItem = ({
     row,
@@ -36,7 +37,7 @@ const ResultListItem = ({
     return (
         <div>
             <div className="flex gap-2 pt-5 px-4 items-center">
-                <div className="w-3/5">
+                <div className="w-3/5 flex items-center gap-3">
                     <a href={`http://${domain}`} target="_blank">
                         <p className="font-serif border-b border-transparent hover:border-black/20 cursor-pointer inline-block">
                             <span className="text-2xl font-serif opacity-50">
@@ -48,6 +49,27 @@ const ResultListItem = ({
                             </span>
                         </p>
                     </a>
+                    <div className="">
+                        {isPending ? (
+                            <Skeleton className="w-[100px] h-[20px] rounded-full" />
+                        ) : (
+                            <>
+                                {error ? (
+                                    <Badge variant="destructive">ERROR</Badge>
+                                ) : (
+                                    <Badge
+                                        variant={`${
+                                            available
+                                                ? "secondary"
+                                                : "destructive"
+                                        }`}
+                                    >
+                                        {available ? "Available" : "Registered"}
+                                    </Badge>
+                                )}
+                            </>
+                        )}
+                    </div>
                 </div>
                 <div className="w-1/5 text-end">
                     <WaybackButton domain={domain} />
@@ -57,16 +79,8 @@ const ResultListItem = ({
                         <Skeleton className="w-[100px] h-[20px] rounded-full" />
                     ) : (
                         <>
-                            {error ? (
-                                <Badge variant="destructive">ERROR</Badge>
-                            ) : (
-                                <Badge
-                                    variant={`${
-                                        available ? "secondary" : "destructive"
-                                    }`}
-                                >
-                                    {available ? "Available" : "Registered"}
-                                </Badge>
+                            {!error && available && (
+                                <RegisterDomainButton domain={domain} />
                             )}
                         </>
                     )}
