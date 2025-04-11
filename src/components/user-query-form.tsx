@@ -20,6 +20,7 @@ import { useDebouncedCallback } from "use-debounce";
 import { useForm } from "react-hook-form";
 import useUserQuery from "@/hooks/use-user-query";
 import { zodResolver } from "@hookform/resolvers/zod";
+import BeforeSearch from "./promotions/before-search";
 
 const formSchema = z
     .object({
@@ -78,10 +79,11 @@ function UserQueryForm() {
 
     return (
         <div className="sticky top-0 bg-background z-10 py-5">
+            <BeforeSearch />
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-4"
+                    className="space-y-4 pt-5"
                 >
                     <div className="flex items-end">
                         <div className="flex-grow pe-4">
