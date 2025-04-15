@@ -69,8 +69,8 @@ importers:
         specifier: ^2.3.1
         version: 2.3.1
       rdap-kit:
-        specifier: ^0.0.1
-        version: 0.0.1
+        specifier: ^1.0.1
+        version: 1.0.1
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -2069,8 +2069,8 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
-  rdap-kit@0.0.1:
-    resolution: {integrity: sha512-uVA9VKubxmDsoEB8gUHg4wcJsAHXWB4v2uugdrRwOnYpH0DiC3OQKod6XUYVFhVDxqq4Wfzh4HQAGPMxJZfbgg==}
+  rdap-kit@1.0.1:
+    resolution: {integrity: sha512-WbvqMqZzgU7raOSS7cK7tZHya93EyV6gWsVMynQn/sBANE98kkOHckBl72z3mve14pFcwM+BRY47HoXSt4OvFw==}
 
   react-dom@19.0.0:
     resolution: {integrity: sha512-4GV5sHFG0e/0AD4X+ySy6UJd3jVl1iNsNHdpad0qhABJ11twS3TTBnseqsKurKcsNqCEFeGL3uLpVChpIO3QfQ==}
@@ -4503,7 +4503,7 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  rdap-kit@0.0.1: {}
+  rdap-kit@1.0.1: {}
 
   react-dom@19.0.0(react@19.0.0):
     dependencies:
