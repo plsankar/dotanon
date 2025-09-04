@@ -15,6 +15,17 @@ interface RDAPDomainData {
     }[];
     status: string[];
     notices: { title: string; description: string[] }[];
+    nameservers: Array<{
+        objectClassName: string;
+        handle: string;
+        ldhName: string;
+        unicodeName: string;
+        status: Array<string>;
+        events: Array<{
+            eventAction: string;
+            eventDate: string;
+        }>;
+    }>;
 }
 
 type VcardArray = [string, ...[string, object, string, string][]][];

@@ -120,6 +120,39 @@ export const InfoEvents = ({
                                                 {abusePhone || "N/A"}
                                             </TableCell>
                                         </TableRow>
+                                        <TableRow>
+                                            <TableHead colSpan={2}>
+                                                <TableCell className="font-medium pt-5">
+                                                    General
+                                                </TableCell>
+                                            </TableHead>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell className="font-medium px-4">
+                                                Status
+                                            </TableCell>
+                                            <TableCell className="text-right px-4">
+                                                {rdap.status.map((s) => (
+                                                    <>
+                                                        {s}
+                                                        <br />
+                                                    </>
+                                                ))}
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell className="font-medium px-4">
+                                                Nameservers
+                                            </TableCell>
+                                            <TableCell className="text-right px-4">
+                                                {rdap.nameservers.map((s) => (
+                                                    <>
+                                                        {s.ldhName}
+                                                        <br />
+                                                    </>
+                                                ))}
+                                            </TableCell>
+                                        </TableRow>
                                     </TableBody>
                                 </Table>
                             </AccordionContent>
