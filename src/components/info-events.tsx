@@ -132,11 +132,13 @@ export const InfoEvents = ({
                                                 Status
                                             </TableCell>
                                             <TableCell className="text-right px-4">
-                                                {rdap.status.map((s) => (
-                                                    <>
+                                                {rdap.status.map((s, index) => (
+                                                    <span
+                                                        key={`${domain}-ns-${index}`}
+                                                    >
                                                         {s}
                                                         <br />
-                                                    </>
+                                                    </span>
                                                 ))}
                                             </TableCell>
                                         </TableRow>
@@ -145,12 +147,16 @@ export const InfoEvents = ({
                                                 Nameservers
                                             </TableCell>
                                             <TableCell className="text-right px-4">
-                                                {rdap.nameservers.map((s) => (
-                                                    <>
-                                                        {s.ldhName}
-                                                        <br />
-                                                    </>
-                                                ))}
+                                                {rdap.nameservers?.map(
+                                                    (s, index) => (
+                                                        <span
+                                                            key={`${domain}-ns-${index}`}
+                                                        >
+                                                            {s.ldhName}
+                                                            <br />
+                                                        </span>
+                                                    )
+                                                )}
                                             </TableCell>
                                         </TableRow>
                                     </TableBody>

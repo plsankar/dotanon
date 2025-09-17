@@ -15,7 +15,7 @@ interface RDAPDomainData {
     }[];
     status: string[];
     notices: { title: string; description: string[] }[];
-    nameservers: Array<{
+    nameservers?: Array<{
         objectClassName: string;
         handle: string;
         ldhName: string;
